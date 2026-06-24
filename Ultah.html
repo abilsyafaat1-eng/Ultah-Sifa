@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sifa</title>
+  
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background-image:url('sifa.png');
+background-size:cover;
+background-position:center;
+background-size:cover;
+animation:bg 10s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+position:relative;
+z-index:10;
+padding:20px;
+width:100%;
+}
+
+h1{
+font-size:4rem;
+text-shadow:0 0 20px white;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.05);}
+}
+
+.nama{
+font-size:3rem;
+font-weight:bold;
+color:#fff700;
+margin:10px 0;
+}
+
+.kue{
+font-size:90px;
+animation:lompat 1.5s infinite;
+}
+
+@keyframes lompat{
+50%{transform:translateY(-15px);}
+}
+
+button{
+margin-top:20px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:white;
+font-weight:bold;
+}
+
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#333;
+padding:25px;
+border-radius:20px;
+width:80%;
+max-width:350px;
+z-index:100;
+box-shadow:0 0 30px rgba(0,0,0,.3);
+}
+
+.popup h2{
+margin-bottom:10px;
+}
+
+.balon{
+position:fixed;
+bottom:-100px;
+font-size:40px;
+animation:terbang linear infinite;
+}
+
+@keyframes terbang{
+to{
+transform:translateY(-120vh);
+}
+}
+
+.confetti{
+position:fixed;
+width:12px;
+height:12px;
+top:-20px;
+animation:jatuh linear forwards;
+}
+
+@keyframes jatuh{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+</style>
+</head>
+<body>
+
+<audio id="musik" loop hidden>
+    <source src="ulangtahun.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('click', function () {
+    const musik = document.getElementById('musik');
+    musik.play();
+}, { once: true });
+</script>
+  
+<script>
+window.onload = function(){
+    document.getElementById("musik").play();
+}
+</script>
+  
+<div class="container">
+<h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+<div class="nama">SIFA</div>
+<div class="kue">🎂</div>
+
+<button onclick="kejutan()">Buka Kejutan 🎁</button>
+
+<div class="pengirim">
+ Dari Abil 
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+<h2>Untuk Sifa ✨</h2>
+  <img src="sifa1.jpg" width="120" style="border-radius:50%;margin:10px;">
+<p>
+Selamat ulang tahun Sifa.
+Semoga dilimpahkan rezekinya dan di perpanjang umurnya,
+dan senyummu tetap jadi alasan hari terasa lebih indah. 
+🎂🎉❤️
+</p>
+</div>
+
+<script>
+
+function kejutan(){
+let popup = document.getElementById("popup");
+
+if(popup.style.display === "block"){
+    popup.style.display = "none";
+}else{
+    popup.style.display = "block";
+}
+}
+
+function balon(){
+let b=document.createElement("div");
+b.className="balon";
+b.innerHTML="🎈";
+
+b.style.left=Math.random()*window.innerWidth+"px";
+b.style.animationDuration=(Math.random()*4+4)+"s";
+
+document.body.appendChild(b);
+
+setTimeout(()=>{
+b.remove();
+},8000);
+}
+
+setInterval(balon,500);
+
+function confetti(){
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*window.innerWidth+"px";
+c.style.background=
+`hsl(${Math.random()*360},100%,50%)`;
+
+c.style.animationDuration=
+(Math.random()*3+2)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},5000);
+}
+
+setInterval(confetti,80);
+
+</script>
+
+</body>
+</html>
